@@ -26,13 +26,22 @@ public class UserController {
 	public Userr getUser(@PathParam("id") Integer id) {
 		return entityManagerr.find(Userr.class, id);
 	}
-	
+
 	@PUT
-	@Path("save") 
-	public boolean getUser(Userr user) {
+	@Path("save")
+	public boolean save(Userr user) {
 		Userr userr = new Userr();
 		userr.setName(user.getName());
 		entityManagerr.persist(userr);
+		return true;
+	}
+
+	@PUT
+	@Path("update")
+	public boolean update(Userr user) {
+		Userr u = entityManagerr.find(Userr.class, user.getId());
+		u = user;
+		entityManagerr.persist(u);
 		return true;
 	}
 	
